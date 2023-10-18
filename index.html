@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Funny Cookie Challenge</title>
+    <title>Cookie Challenge</title>
 </head>
 <body>
-    <h1>The Funny Cookie Challenge</h1>
-    <p>Can you reveal the hidden joke?</p>
+    <h1>Cookie Challenge</h1>
+    <p>Welcome, gamer! Your mission is to retrieve the flag by manipulating cookies.</p>
+    <p>Click the button below to set a cookie with your username:</p>
+    <button id="setCookie">Set Cookie</button>
+
+    <p id="flagMessage" style="display: none;">Congratulations! You have the flag: <span id="flag">FLAG{cookie_challenge_success}</span></p>
 
     <script>
-        // Function to set a cookie with a funny message
-        window.location.href = '/funny_joke.php';
-        function setFunnyCookie() {
-            document.cookie = "funny_joke=Why don't scientists trust atoms? Because they make up everything!";
+        // Function to set a cookie with the user's name
+        function setCookie() {
+            var username = prompt("Enter your username:");
+            document.cookie = `username=${username}`;
+            alert("Cookie set successfully!");
         }
-    </script>
 
-    <button onclick="setFunnyCookie()">Get the Cookie</button>
+        // Check if the flag cookie is present
+        function checkFlag() {
+            var cookies = document.cookie.split('; ');
+            for (var i = 0; i < cookies.length; i++) {
+                var parts = cookies[i].split('=');
+                if (parts[0] === "flag" && parts[1] === "true") {
+                    document.getElementById("flagMessage").style.display = "block";
+                }
+            }
+        }
+
+        // Call the checkFlag function on page load
+        window.onload = checkFlag;
+    </script>
 </body>
 </html>
