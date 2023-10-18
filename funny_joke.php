@@ -1,11 +1,7 @@
 <?php
-// This PHP script is used to retrieve and display the funny joke from a cookie
+// This PHP script sets a "flag" cookie with the value "true"
 
-if (isset($_COOKIE['funny_joke'])) {
-    echo "<h1>The Funny Joke</h1>";
-    echo "<p>" . $_COOKIE['funny_joke'] . "</p>";
-} else {
-    echo "<h1>No Cookie Found</h1>";
-    echo "<p>Click the 'Get the Cookie' button to reveal the funny joke!</p>";
-}
+setcookie("flag", "true", time() + 3600); // Cookie expires in 1 hour
+
+echo "Flag cookie set!";
 ?>
